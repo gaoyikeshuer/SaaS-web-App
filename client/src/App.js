@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {Routes, Route} from 'react-router-dom'
+import {useMemo} from 'react'
+import {CssBaseline, ThemeProvider} from '@mui/material'
+import {createTheme} from '@mui/material/styles'
+import {themeSettings} from './theme'
+import HomeScreen from './component/screens/HomeScreen';
+import LoginScreen from './component/screens/LoginScreen';
+import RegisterScreen from './component/screens/RegisterScreen';
+import Navbar from './component/Navbar'
 function App() {
+  const theme = useMemo(()=>createTheme(themeSettings()),[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}/>
+      <CssBaseline/>
+      <Navbar/>
+      <Routes>
+      <Route exact path="/" element ={<HomeScreen/>} />
+      <Route exact path="/login" element={<LoginScreen/>} />
+      <Route exact path="/register" element= {<RegisterScreen/>}/>
+      </Routes>
+
     </div>
   );
 }

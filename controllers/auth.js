@@ -10,7 +10,7 @@ exports.register = async(req,res,next) =>{
     const {username, email, password} = req.body;
     const existing_email = await User.findOne({email})
     if(existing_email){
-        return next(new Error)
+        return next(new ErrorResponse("Email already existed", 402))
     }
     try{
         const user =  await User.create({username, email, password});
@@ -21,14 +21,14 @@ exports.register = async(req,res,next) =>{
 }
 exports.login = async(req,res,next)=>{
     const {email, password} =  req.body
-    if(email ||!password){
+    if(!email ||!password){
         return next(new ErrorResponse("Please provide an email and password",400))
     }
     try{
   // check already exists by email
-  const user = await User.findOne({email})
+  const user = await User.findOne({email}).select("password")
   if(!user){
-    return next(new ErrorResponse("Invalid credentials",401))
+    return next(new ErrorResponse("Invalid credentials, User doesn't exist",401))
   }
   //check password matches
   const isMatch = await user.matchPasswords(password)
