@@ -20,6 +20,9 @@ const LoginScreen = () => {
        const {data}=  await axios.post('/api/auth/login',{email,password},config)
        if(data.token.accessToken){
         localStorage.setItem("authToken",true)
+        navigate("/")
+        window.location.reload()
+        // we want to change login into logout
        }
         navigate("/")
         console.log("signed in")

@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true, useUnifiedTopology
 .catch((err)=>console.log(err))
 
 app.use('/api/auth', require('./routes/auth'))
+app.use('/api/openai', require('./routes/open'))
 app.use(errorHandler)
 
 app.listen(port, ()=>{
