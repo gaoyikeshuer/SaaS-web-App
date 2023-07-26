@@ -2,17 +2,17 @@ import React from 'react'
 import {Box, Typography, useMediaQuery, useTheme, Button, TextField, Collapse, Alert, Link, Card, Stack} from '@mui/material'
 import { useState } from 'react'
 import axios from 'axios'
-const SummaryScreen = () => {
+const ParagraphScreen = () => {
     const theme = useTheme()
     const isNotMobile = useMediaQuery("(min-width: 1000px)")
     const [error, setError]= useState("")
     const [text, setText] = useState("");
-    const [summary, setSummary] = useState("")
-    const summaryHandler= async(e)=>{
+    const [paragraph, setParagraph] = useState("")
+    const paragraphHandler= async(e)=>{
         e.preventDefault();
         try{
-       const {data}=  await axios.post('/api/openai/summary',{text})
-       setSummary(data.summary)
+       const {data}=  await axios.post('/api/openai/paragraph',{text})
+       setParagraph(data)
 
         }catch(err){
             console.log(err)
@@ -37,23 +37,23 @@ const SummaryScreen = () => {
     <Collapse in={error}>
     <Alert severity='error' sx={{mb:2}}>{error}</Alert>
     </Collapse>
-    <form onSubmit={summaryHandler}>
-        <Typography variant='h4' mb={2}>Text Summarizer</Typography>
+    <form onSubmit={paragraphHandler}>
+        <Typography variant='h4' mb={2}>Paragraph Generator</Typography>
         <Stack direction="row" spacing={1}>
             <Box width="87%">
-            <TextField multiline="true" placeholder="Enter text you want to summarize here" margin="normal"  fullWidth value={text} onChange={(e)=>setText(e.target.value)}></TextField>
+            <TextField multiline="true" placeholder="Enter paragraph topic here" margin="normal"  fullWidth value={text} onChange={(e)=>setText(e.target.value)}></TextField>
             </Box>
 
-        <Button disableElevation type='submit'  bx={{color:'white'}}>Summarize</Button>
+        <Button disableElevation type='submit'  bx={{color:'white'}}>Generate</Button>
         </Stack>
 
     </form>
-    { summary?    <Card sx={{mt:4, p:2,boarder:2, boxShadow:0, borderColor:"#CFCFCF",boarderRadius:2, height:"500px", bgcolor:"#F6F6F6"}}>
-        <Typography>{summary}</Typography>
+    { paragraph?    <Card sx={{mt:4, p:2,boarder:2, boxShadow:0, borderColor:"#CFCFCF",boarderRadius:2, height:"500px", bgcolor:"#F6F6F6"}}>
+        <Typography>{paragraph}</Typography>
     </Card>
     :
     <Card sx={{mt:4, p:2,boarder:2, boxShadow:0, borderColor:"#CFCFCF",boarderRadius:2, height:"500px", bgcolor:"#F6F6F6"}}>
-    <Typography variant='h3' color='gray' sx={{textAlign:'center', verticalAlign:'middle', lineHeight:'450px'}}>Summary will appear here</Typography>
+    <Typography variant='h3' color='gray' sx={{textAlign:'center', verticalAlign:'middle', lineHeight:'450px'}}>Blurb will appear here</Typography>
 </Card>
 
     }
@@ -65,4 +65,4 @@ const SummaryScreen = () => {
   )
 }
 
-export default SummaryScreen
+export default ParagraphScreen

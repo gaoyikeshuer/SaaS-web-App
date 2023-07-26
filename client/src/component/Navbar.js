@@ -23,7 +23,7 @@ const Navbar = () => {
     }
   return (
   <Box width="100%" backgroundColor = {theme.palette.background.alt} textAlign ='center' sx={{mb:2}}  >
- <Typography variant='h2' color='primary'>SaaSAI</Typography>
+ <Typography variant='h2' color='primary'><Link href='/' underline='none'>SaaSAI</Link> </Typography>
  <Link href='/register' m={1}> Register</Link>
 {loggedIn? <Link href ='/' onClick={logoutHandler} p={2}>Logout</Link> :<Link href='/login' m={1}>Login</Link>} 
   </Box>

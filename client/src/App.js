@@ -8,6 +8,7 @@ import LoginScreen from './component/screens/LoginScreen';
 import RegisterScreen from './component/screens/RegisterScreen';
 import Navbar from './component/Navbar'
 import SummaryScreen from './component/screens/SummaryScreen'
+import ParagraphScreen from './component/screens/ParagraphScreen'
 function App() {
   const theme = useMemo(()=>createTheme(themeSettings()),[])
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/login" element={<LoginScreen/>} />
       <Route exact path="/register" element= {<RegisterScreen/>}/>
       <Route exact path='/summary' element={<SummaryScreen/>}/>
+      <Route exact path='/paragraph' element={<ParagraphScreen/>}/>
       </Routes>
 
     </div>
