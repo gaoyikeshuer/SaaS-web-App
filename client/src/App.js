@@ -9,6 +9,7 @@ import RegisterScreen from './component/screens/RegisterScreen';
 import Navbar from './component/Navbar'
 import SummaryScreen from './component/screens/SummaryScreen'
 import ParagraphScreen from './component/screens/ParagraphScreen'
+import ChatbotScreen from './component/screens/ChatbotScreen'
 function App() {
   const theme = useMemo(()=>createTheme(themeSettings()),[])
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route exact path="/register" element= {<RegisterScreen/>}/>
       <Route exact path='/summary' element={<SummaryScreen/>}/>
       <Route exact path='/paragraph' element={<ParagraphScreen/>}/>
+      <Route exact path='/chatbot' element={<ChatbotScreen/>}/>
       </Routes>
 
     </div>

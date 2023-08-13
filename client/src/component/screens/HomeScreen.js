@@ -2,6 +2,9 @@ import React from 'react'
 import {Box, Typography, Card, Stack} from '@mui/material'
 import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import FormatAlignLeftRoundedIcon from '@mui/icons-material/FormatAlignCenterRounded'
+import ChatRoundedIcon from '@mui/icons-material/ChatRounded'
+
+
 import { useNavigate } from 'react-router-dom';
 const HomeScreen = () => {
   const navigate = useNavigate() 
@@ -23,6 +26,14 @@ const HomeScreen = () => {
       <Stack p={3} pt={0}>
         <Typography fontWeight="bold" variant='h5'>Paragraph Summarize</Typography>
         <Typography variant='h6'>Generate an informative blurb about any topic</Typography>
+      </Stack>
+    </Card>
+    <Card onClick = {() => navigate("/chatbot")}
+     sx={{borderRadius:5, height:200, width:350, '&:hover':{border:2, borderColor:'primary.dark', cursor:'pointer'} }}>
+      <ChatRoundedIcon  sx={{color:'primary.dark', mt:2, ml:3, fontSize:40}}/>
+      <Stack p={3} pt={0}>
+        <Typography fontWeight="bold" variant='h5'>Chat Bot</Typography>
+        <Typography variant='h6'>Gain insight from a virtual assistant</Typography>
       </Stack>
     </Card>
  </Stack>
